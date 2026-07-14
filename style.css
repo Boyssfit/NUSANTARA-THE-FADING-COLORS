@@ -17,13 +17,13 @@ body { margin: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Ver
 }
 
 /* Animasi Background */
-.anim-dystopia { animation: cinematicZoom 15s infinite alternate; filter: grayscale(80%) brightness(30%); }
+.anim-dystopia { animation: cinematicZoom 15s infinite alternate; filter: grayscale(50%) brightness(35%); }
 .anim-fade { animation: colorToGrey 5s forwards; }
-.anim-magic { animation: cinematicZoom 8s infinite alternate; filter: brightness(100%) contrast(110%); }
+.anim-magic { animation: cinematicZoom 8s infinite alternate; filter: brightness(105%) contrast(110%); }
 
 @keyframes colorToGrey {
     0% { filter: grayscale(0%) brightness(80%); }
-    100% { filter: grayscale(100%) brightness(30%); }
+    100% { filter: grayscale(100%) brightness(25%); }
 }
 @keyframes cinematicZoom {
     0% { transform: scale(1); }
