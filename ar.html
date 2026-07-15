@@ -3,14 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Nusantara - Pertarungan AR (WebXR)</title>
-    <!-- KITA BUANG AR.JS, HANYA PAKAI A-FRAME MURNI UNTUK WEBXR -->
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body style="margin: 0; overflow: hidden;">
 
     <!-- BUNGKUS UI KHUSUS WEBXR -->
-    <!-- pointer-events diatur agar kamu tetap bisa ngeklik monster di belakang layar yang kosong -->
     <div id="ui-overlay" style="position: absolute; z-index: 1000; width: 100%; height: 100%; pointer-events: none;">
         
         <!-- KUIS -->
@@ -23,15 +21,31 @@
 
     </div>
 
-    <!-- KAMERA & BENTUK DASAR (WEBXR MODE) -->
-    <!-- dom-overlay digunakan agar kuis tetap muncul saat AR menyala -->
+    <!-- KAMERA & DUNIA AR (WEBXR) -->
     <a-scene webxr="optionalFeatures: dom-overlay; overlayElement: #ui-overlay;" cursor="rayOrigin: mouse" raycaster="objects: .bisa-diklik">
         
-        <!-- KOTAK MERAH PENGGANTI MONSTER (Kita pakai kotak dulu ya biar gampang dites) -->
-        <a-box id="monster" position="0 0.5 -3" scale="1 1 1" color="#e74c3c"></a-box>
+        <!-- ========================================== -->
+        <!-- 1. KEMBALIKAN ASET 3D KITA -->
+        <!-- ========================================== -->
+        <a-assets>
+            <!-- Ganti ini dengan nama file monster kamu -->
+            <a-asset-item id="model-monster" src="monster/bread_monster_model.glb"></a-asset-item>
+            
+            <!-- Ganti ini dengan nama file keris kamu -->
+            <a-asset-item id="model-senjata" src="senjata/keris.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- ========================================== -->
+        <!-- 2. MUNCULKAN MONSTER ASLINYA -->
+        <!-- ========================================== -->
+        <!-- Posisi Z -3 artinya 3 meter di depanmu. Posisi Y 0 artinya dia berpijak di lantai -->
+        <a-gltf-model id="monster" src="#model-monster" position="0 0 -3" scale="0.3 0.3 0.3"></a-gltf-model>
         
-        <!-- BOLA BIRU PENGGANTI SENJATA -->
-        <a-sphere id="artefak" position="0 1 -1.5" scale="0.3 0.3 0.3" color="#3498db" class="bisa-diklik" animation="property: position; dir: alternate; dur: 2000; to: 0 1.2 -1.5; loop: true"></a-sphere>
+        <!-- ========================================== -->
+        <!-- 3. MUNCULKAN KERISNYA -->
+        <!-- ========================================== -->
+        <!-- Posisi Y 1 artinya dia melayang 1 meter dari lantai, Z -1.5 artinya lebih dekat denganmu -->
+        <a-gltf-model id="artefak" src="#model-senjata" position="0 1 -1.5" scale="0.5 0.5 0.5" class="bisa-diklik" animation="property: position; dir: alternate; dur: 2000; to: 0 1.2 -1.5; loop: true"></a-gltf-model>
 
         <!-- KAMERA -->
         <a-camera position="0 1.6 0"></a-camera>
